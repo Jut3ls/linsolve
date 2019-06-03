@@ -27,15 +27,21 @@ def gaussian_eliminate(aa, bb):
             bb[i] = aa[j, j] / aa[i,j] * bb[i] - bb[j]            
             aa[i] = aa[j, j] / aa[i,j] * aa[i] - aa[j]
         
-   #for k in range(0,nn,-1):
-   xx[k] = bb[nn]
-    
+        
+    """Solution-Vector"""
+    for k in reversed(range(0,nn)):
+        for g in reversed(range(k+1,nn)):
+            bb[k] = bb[k] - aa[k,g] * xx[g]
+        if aa[k ,k] == 0:
+            continue
+        xx[k] = bb[k] / aa[k ,k]
+            
     return aa, bb, xx
     
     
     
-aa = np.array([[1.0, 2.0, -1.0], [1.0, 1.0, 2.0], [2.0, 3.0, -3.0]])
-bb = np.array([2.0, 9.0, -1.0])
+aa = np.array([[2.0, 4.0, 4.0], [1.0, 2.0, -1.0], [5.0, 4.0, 2.0]])
+bb = np.array([1.0, 2.0, 4.0])
 
 aa, bb, xx = gaussian_eliminate(aa, bb)
 
