@@ -1,0 +1,1 @@
+This projects purpose is solving a linear equation system by using the gaussian elimination process.
