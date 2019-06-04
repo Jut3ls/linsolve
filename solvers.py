@@ -32,3 +32,16 @@ def gaussian_eliminate(aa, bb):
             continue
         xx[k] = bb[k] / aa[k, k]
     return xx
+
+
+aa = np.array([[2.0, 4.0, 4.0], [5.0, 4.0, 2.0], [1.0, 2.0, -1.0]])
+dd = np.array([[2.0, 4.0, 4.0], [1.0, 2.0, -1.0], [5.0, 4.0, 2.0]])
+bb = np.array([1.0, 4.0, 2.0])
+
+xx, cc = gaussian_eliminate(aa, bb)
+xx, ee = gaussian_eliminate(dd, bb)
+
+print(aa)
+print(ee)
+print(bb)
+print(xx)
