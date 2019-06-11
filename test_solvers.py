@@ -7,8 +7,7 @@ import solvers
 
 
 def test_gaussian_eliminate_1():
-    """Test gaussian_eliminate-Funktion"""
-
+    """Test gaussian_eliminate-Function"""
     print("\nTest 1")
     aa = np.array([[2.0, 4.0, 4.0], [5.0, 4.0, 2.0], [1.0, 2.0, -1.0]])
     bb = np.array([1.0, 4.0, 2.0])
@@ -18,6 +17,7 @@ def test_gaussian_eliminate_1():
 
 
 def test_gaussian_eliminate_2():
+    """Test gaussian_eliminate-Function a second time"""
     print("\nTest 2")
     aa = np.array([[2.0, 4.0, 4.0], [1.0, 2.0, -1.0], [5.0, 4.0, 2.0]])
     bb = np.array([1.0, 2.0, 4.0])
@@ -27,6 +27,7 @@ def test_gaussian_eliminate_2():
 
 
 def test_gaussian_eliminate_3():
+    """Test gaussian_eliminate-Function on depedency"""
     print("\nTest 3")
     aa = np.array([[1.0, 2.0, 3.0], [4.0, 5.0, 6.0], [7.0, 8.0, 9.0]])
     bb = np.array([1.0, 2.0, 3.0])
