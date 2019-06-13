@@ -14,40 +14,49 @@ def gaussian_eliminate(aa, bb):
         if the equations are linearly dependent.
     """
     nn = aa.shape[0]
-    """Solving Matrix"""
+    xx = np.zeros((nn,), dtype=float)
+    """Solving Matrix with partial pivoting"""
     cc = np.array(aa)
-    # print(cc)
     for j in range(0, nn):
-        # z needs shift to output proper position of row in aa
-        y = cc[j:, j]
-        z = np.argmax(y) + j  # shift done here not sure if correct
-        # print(y, z)
+        y = cc[j:, j]  # array contains columns of aa
+        z = np.argmax(y) + j  # z looks for row-position of highest abs val in column
         for i in range(j+1, nn):
-            # setting up temporary variable for pivot
             temp = np.array(aa[z])
-            # performing pivot, doesnt seem to be working yet
-            # aa might not be properly overwritten by the pivot while solving
-            aa[z], aa[i] = aa[i], temp
-            # print(temp)
+            temp2 = np.array(bb[z])
+            # swapping rows of aa and bb
+            if aa[i-1, j] != 0:  # only performs shift if first entry of row isn't zero
+                aa[z], aa[i-1] = aa[i-1], temp
+                bb[z], bb[i-1] = bb[i-1], temp2
             if aa[i, j] == 0:
                 continue
             bb[i] = aa[j, j] / aa[i, j] * bb[i] - bb[j]
             aa[i] = aa[j, j] / aa[i, j] * aa[i] - aa[j]
+
     """Solution-Vector"""
-    xx = np.zeros((nn,), dtype=float)
-    for k in reversed(range(0, nn)):
-        for g in reversed(range(k+1, nn)):
+    for k in range(nn-1, -1, -1):
+        for g in range(nn-1, k, -1):
             bb[k] = bb[k] - aa[k, g] * xx[g]
         if aa[k, k] == 0:
             continue
         xx[k] = bb[k] / aa[k, k]
+
+    # trying to catch the linear dependency
+    for t in range(0, nn):
+        if np.all(aa[t] == 0):
+            if abs(xx[t]) == 0:
+                return None
+
     return xx
 
 
-if __name__ == "__main__":
+# built in testing framework may be deleted upon completion of program
+"""if __name__ == "__main__":
     aa = np.array([[2.0, 4.0, 4.0], [5.0, 4.0, 2.0], [1.0, 2.0, -1.0]])
     dd = np.array([[2.0, 4.0, 4.0], [1.0, 2.0, -1.0], [5.0, 4.0, 2.0]])
     bb = np.array([1.0, 4.0, 2.0])
+    ee = np.array([1.0, 2.0, 4.0])
+    mtst = np.array([[1.0, 2.0, 3.0], [7.0, 8.0, 9.0], [4.0, 5.0, 6.0]])
+    vtst = np.array([1.0, 2.0, 3.0])
 
-    xx = gaussian_eliminate(dd, bb)
-    # print(xx)
+    xx = gaussian_eliminate(mtst, vtst)
+    print(xx)"""
