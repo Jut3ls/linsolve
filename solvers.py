@@ -47,16 +47,3 @@ def gaussian_eliminate(aa, bb):
                 return None
 
     return xx
-
-
-# built in testing framework may be deleted upon completion of program
-"""if __name__ == "__main__":
-    aa = np.array([[2.0, 4.0, 4.0], [5.0, 4.0, 2.0], [1.0, 2.0, -1.0]])
-    dd = np.array([[2.0, 4.0, 4.0], [1.0, 2.0, -1.0], [5.0, 4.0, 2.0]])
-    bb = np.array([1.0, 4.0, 2.0])
-    ee = np.array([1.0, 2.0, 4.0])
-    mtst = np.array([[1.0, 2.0, 3.0], [7.0, 8.0, 9.0], [4.0, 5.0, 6.0]])
-    vtst = np.array([1.0, 2.0, 3.0])
-
-    xx = gaussian_eliminate(mtst, vtst)
-    print(xx)"""
